@@ -27,29 +27,20 @@ app.add_middleware(
 )
 
 # Get NVIDIA API key
-NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY")
-
-if not NVIDIA_API_KEY:
-    print("❌ ERROR: NVIDIA_API_KEY not found!")
-    raise ValueError("NVIDIA_API_KEY not set")
-
-print(f"✓ NVIDIA API key loaded: {NVIDIA_API_KEY[:20]}...")
-
-# Initialize NVIDIA client
+TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
 client = OpenAI(
-    base_url="https://integrate.api.nvidia.com/v1",
-    api_key=NVIDIA_API_KEY
+    base_url="https://api.together.xyz/v1",
+    api_key=TOGETHER_API_KEY
 )
 
 # Available NVIDIA models - use these exact names
 AVAILABLE_MODELS = {
-    "llama": "meta/llama-3.1-405b-instruct",
-    "mixtral": "mistralai/mixtral-8x22b-instruct-v0.1",
-    "nemotron": "nvidia/nemotron-4-340b-instruct",
+    "llama3.1-8b": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+    "llama3.2-3b": "meta-llama/Llama-3.2-3B-Instruct-Turbo",
 }
 
 # Default model
-DEFAULT_MODEL = AVAILABLE_MODELS["llama"]
+DEFAULT_MODEL = AVAILABLE_MODELS["llama3.1-8b"]
 
 # Initialize ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
