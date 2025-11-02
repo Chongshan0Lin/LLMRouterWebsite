@@ -5,7 +5,23 @@
 (function() {
     'use strict';
 
-    const API_ENDPOINT = 'http://localhost:8000';
+    const API_ENDPOINT= 'https://llm-router-website.vercel.app/';
+
+    async function searchDocs(query) {
+    const response = await fetch(`${API_URL}/search`, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+        query: query,
+        n_results: 5
+        })
+    });
+    
+    const data = await response.json();
+    return data;
+    }
     
     // Wait for DOM to be ready
     if (document.readyState === 'loading') {

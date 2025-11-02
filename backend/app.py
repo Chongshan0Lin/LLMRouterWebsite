@@ -20,7 +20,10 @@ app = FastAPI(title="LLM Documentation Search API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://chongshan0lin.github.io/LLMRouterWebsite/",  # Your GitHub Pages URL
+        "http://localhost:3000",            # For local testing
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
